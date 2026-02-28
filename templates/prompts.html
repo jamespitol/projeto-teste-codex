@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Prompts salvos</h1>
+<form method="post" action="/prompts" class="card"><input name="name" placeholder="Nome" required><textarea name="content" required></textarea><button>Salvar prompt</button></form>
+<ul>{% for p in prompts %}<li><b>{{p.name}}</b> - {{p.created_at}}<form method="post" action="/prompts/{{p.id}}/delete"><button>Excluir</button></form><pre>{{p.content}}</pre></li>{% endfor %}</ul>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Dashboard</h1>
+<div class="grid">{% for k,v in counts.items() %}<div class="card"><b>{{k}}</b><p>{{v}}</p></div>{% endfor %}</div>
+<h3>Artigos por blog</h3><ul>{% for b in blog_counts %}<li>{{b.blog}}: {{b.count}}</li>{% endfor %}</ul>
+<h3>Próximos agendamentos</h3><ul>{% for a in upcoming %}<li>{{a.title}} - {{a.scheduled_for}}</li>{% endfor %}</ul>
+<h3>Últimos artigos</h3><ul>{% for a in latest %}<li>{{a.title}} ({{a.status}})</li>{% endfor %}</ul>
+{% endblock %}

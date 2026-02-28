@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Histórico de artigos</h1>
+<form method="get" action="/articles/history"><select name="blog_id"><option value="0">Todos blogs</option>{% for b in blogs %}<option value="{{b.id}}">{{b.name}}</option>{% endfor %}</select><input name="status_filter" placeholder="Status"><input name="q" placeholder="Buscar título"><button>Filtrar</button></form>
+<a href="/articles/export?fmt=csv">Exportar CSV</a> | <a href="/articles/export?fmt=xlsx">Exportar XLSX</a>
+<table><tr><th>Título</th><th>Blog</th><th>Categoria</th><th>Modelo IA</th><th>Palavras</th><th>Status</th><th>Criação</th><th>Publicação</th></tr>{% for a in articles %}<tr><td>{{a.title}}</td><td>{{a.blog.name if a.blog else ''}}</td><td>{{a.category_name}}</td><td>{{a.ai_model}}</td><td>{{a.word_count}}</td><td>{{a.status}}</td><td>{{a.created_at}}</td><td>{{a.published_at}}</td></tr>{% endfor %}</table>
+{% endblock %}
