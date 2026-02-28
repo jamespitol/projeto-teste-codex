@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Geração de Artigos</h1>
+<form method="post" action="/articles/generate" class="card">
+<textarea name="prompt_text" placeholder="Prompt"></textarea>
+<select name="prompt_id"><option value="0">Prompt salvo</option>{% for p in prompts %}<option value="{{p.id}}">{{p.name}}</option>{% endfor %}</select>
+<input name="keyword" placeholder="Palavra-chave principal" required>
+<input name="title" placeholder="Título opcional">
+<input type="number" name="word_target" value="1200">
+<select name="ai_model"><option value="gpt-4">GPT-4</option><option value="gpt-4o">GPT-4o</option><option value="gemini-pro">Gemini Pro</option><option value="gemini-flash">Gemini Flash</option></select>
+<select name="blog_id" id="blogSelect" required><option value="">Blog</option>{% for b in blogs %}<option value="{{b.id}}">{{b.name}}</option>{% endfor %}</select>
+<input name="category_name" placeholder="Categoria">
+<label><input type="checkbox" name="affiliates_enabled"> Links afiliados</label><textarea name="affiliate_products" placeholder="Produto=link por linha"></textarea>
+<label><input type="checkbox" name="image_enabled"> Imagem de capa</label><select name="image_mode"><option value="auto">Basear no artigo</option><option value="manual">Prompt manual</option></select><input name="image_prompt" placeholder="Prompt imagem">
+<label><input type="checkbox" name="batch_enabled"> Lote</label><textarea name="batch_keywords" placeholder="Palavras-chave em lote"></textarea>
+<button>Gerar</button>
+</form>
+{% endblock %}

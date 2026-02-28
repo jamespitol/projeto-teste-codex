@@ -1,0 +1,14 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Blogs</h1>
+<form method="post" action="/blogs" class="card">
+<input name="name" placeholder="Nome" required><input name="wp_url" placeholder="URL WP" required><input name="wp_user" placeholder="Usuário" required><input name="wp_app_password" placeholder="Application Password" required>
+<input name="niche" placeholder="Nicho"><textarea name="default_prompt" placeholder="Prompt padrão"></textarea>
+<label><input type="checkbox" name="is_active" checked> Ativo</label>
+<input type="number" name="articles_per_week" value="1"><input name="preferred_days" value="0,2,4" placeholder="Dias (0-6 separados por vírgula)"><input name="preferred_time" value="09:00" type="time">
+<button>Salvar blog</button>
+</form>
+<form method="post" action="/blogs/test-connection" class="card">
+<h3>Testar conexão</h3><input name="wp_url" placeholder="URL"><input name="wp_user" placeholder="Usuário"><input name="wp_app_password" placeholder="App password"><button>Testar</button>
+</form>
+<table><tr><th>Nome</th><th>URL</th><th>Status</th><th>Ações</th></tr>{% for b in blogs %}<tr><td>{{b.name}}</td><td>{{b.wp_url}}</td><td>{{'Ativo' if b.is_active else 'Inativo'}}</td><td><form method="post" action="/blogs/{{b.id}}/delete"><button>Excluir</button></form></td></tr>{% endfor %}</table>
+{% endblock %}

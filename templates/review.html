@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Revisão em lote</h1>
+<div class="grid">{% for a in articles %}<div class="card"><h3>{{a.title}}</h3><small>{{a.word_count}} palavras</small><p>{{a.content[:250]}}...</p>{% if a.image_url %}<img src="{{a.image_url}}" width="150">{% endif %}
+<form method="post" action="/articles/{{a.id}}/approve"><select name="action"><option value="draft">Salvar como rascunho</option><option value="publish">Publicar agora</option><option value="schedule">Agendar manual</option><option value="smart">Agendamento inteligente</option></select><input type="datetime-local" name="schedule_at"><button>Aprovar</button></form>
+<form method="post" action="/articles/{{a.id}}/regenerate"><button>Regerar</button></form>
+<form method="post" action="/articles/{{a.id}}/delete"><button>Remover</button></form>
+</div>{% endfor %}</div>
+{% endblock %}

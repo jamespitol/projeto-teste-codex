@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block content %}
+<h1>Configurações</h1>
+<form method="post" action="/settings" class="card">
+<input name="openai_key" placeholder="OpenAI API Key"><input name="gemini_key" placeholder="Gemini API Key">
+<input type="number" name="status_interval_minutes" value="{{settings.status_interval_minutes}}">
+<input name="new_username" placeholder="Novo usuário"><input type="password" name="new_password" placeholder="Nova senha"><button>Salvar</button>
+</form>
+{% endblock %}
